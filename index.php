@@ -30,9 +30,9 @@ $db = new DatabaseController();
         $sql = 'SELECT * from catalogo_dispositivo';
         $result = $db->query($sql);
         
-        if ($result && $result-->num_rows > 0){
-            while ($row == $result->fetch_assoc()){
-                echo "<option value="'.$row["id"].'">'.$row["nombre"]."'</option>';
+        if ($result && $result->num_rows > 0){
+            while ($row = $result->fetch_assoc()){
+                echo '<option value="'.$row["id"].'" data-latitud="'.$row["latitud"].'" data-longitud="'.$row["longitud"].'">'.$row["nombre"].'"    </option>';
             }
         }
         ?>
@@ -52,6 +52,13 @@ $db = new DatabaseController();
         const marker1 = new mapboxgl.Marker()
         .setLngLat([-100.814,20.52184 ])
         .addTo(map);
+
+        document.getElementById("select_dispositivo").addEventListener("change", function () {
+            var opcion = this.options[this.delectedIndex];
+            var latitud = opcion.dataset.latitud;
+            var longitudd = opcion.dataset.longitus; 
+            marker1.setLngLat([latitud,longitud]);
+        })
     </script>
     
 </body>
