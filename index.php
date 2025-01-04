@@ -1,3 +1,17 @@
+<?php
+require_once 'controlador.php';
+
+$db = new DatabaseController();
+?>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +27,14 @@
     <select id="select_dispositivo">
         <option disabled value="0">-- Selecciona --</option>
         <?php
-
+        $sql = 'SELECT * from catalogo_dispositivo';
+        $result = $db->query($sql);
+        
+        if ($result && $result-->num_rows > 0){
+            while ($row == $result->fetch_assoc()){
+                echo "<option value="'.$row["id"].'">'.$row["nombre"]."'</option>';
+            }
+        }
         ?>
 
     </select>
