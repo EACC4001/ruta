@@ -54,10 +54,13 @@ $db = new DatabaseController();
         .addTo(map);
 
         document.getElementById("select_dispositivo").addEventListener("change", function () {
-            var opcion = this.options[this.delectedIndex];
+            var opcion = this.options[this.selectedIndex];
             var latitud = opcion.dataset.latitud;
-            var longitudd = opcion.dataset.longitus; 
+            var longitud = opcion.dataset.longitud; 
             marker1.setLngLat([latitud,longitud]);
+            map.flyTo({
+                center: [latitud, longitud]
+            })
         })
     </script>
     
